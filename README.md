@@ -21,3 +21,76 @@ The output path should have an '.plantuml' extension for the diagram code to be 
 If the output path is left out, then the program will print out the parsed data in the terminal.
 
 The parsed data can also be generated into a json file by giving an output path with a '.json' extension.
+
+## Data structure for code parsing result
+The data parsed from code files are stored in specific data structure. Below is an example of the datastructure
+outputted as json:
+```json
+{
+    "<namespace>": [
+        {
+            "dependencies": [
+                "dependency1",
+                "dependency2"
+            ],
+            "fields": [
+                {
+                    "name": "field1",
+                    "visibility": "private"
+                },
+                {
+                    "name": "field2",
+                    "visibility": "protected"
+                },
+                {
+                    "name": "field3",
+                    "visibility": "public"
+                }
+            ],
+            "methods": [
+                {
+                    "name": "method1",
+                    "parameters": [
+                        "param1"
+                    ],
+                    "visibility": "public"
+                },
+                {
+                    "name": "method2",
+                    "parameters": [
+                        "param1",
+                        "param2"
+                    ],
+                    "visibility": "private"
+                }
+            ],
+            "name": "Class1",
+            "namespace": "<namespace>"
+        },
+        {
+            "dependencies": [
+            ],
+            "fields": [
+                {
+                    "name": "field4",
+                    "visibility": "public"
+                },
+                {
+                    "name": "field5",
+                    "visibility": "public"
+                }
+            ],
+            "methods": [
+                {
+                    "name": "method3",
+                    "parameters": [
+                    ],
+                    "visibility": "public"
+                }
+            ],
+            "name": "Class2",
+            "namespace": "<namespace>"
+        }
+    ]
+}
+```
