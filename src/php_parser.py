@@ -2,6 +2,7 @@ import sys
 import os
 import re
 
+
 class PHPParser(object):
 
     def __init__(self):
@@ -70,23 +71,29 @@ class PHPParser(object):
             if "dependencies" not in self.data.keys():
                 self.data["dependencies"] = []
             dependency = self.get_dependency_data(line)
-            self.data["dependencies"].append(dependency)
+            if dependency:
+                self.data["dependencies"].append(dependency)
         elif self.is_beginning_of_class_line(line):
-            self.data["class"] = self.get_class_data(line)
+            class_data = self.get_class_data(line)
+            if class_data:
+                self.data["name"] = class_data["name"]
         elif self.is_field_line(line):
             if "fields" not in self.data.keys():
                 self.data["fields"] = []
             field = self.get_field_data(line)
-            self.data["fields"].append(field)
+            if field:
+                self.data["fields"].append(field)
         elif self.is_function_line(line):
             if "methods" not in self.data.keys():
                 self.data["methods"] = []
             function_data = self.get_function_data(line)
-            self.data["methods"].append(function_data)
+            if function_data:
+                self.data["methods"].append(function_data)
 
     def get_namespace_data(self, line):
         namespace = line.replace("namespace", "")
         namespace = namespace.replace(";", "")
+        namespace = namespace.replace("{", "")
         namespace = namespace.strip()
         return namespace
 
