@@ -23,7 +23,14 @@ If the output path is left out, then the program will print out the parsed data 
 The parsed data can also be generated into a json file by giving an output path with a '.json' extension.
 
 ## Data structure for code parsing result
-The data parsed from code files are stored in specific data structure. Below is an example of the datastructure
+The data parsed from code files are stored in specific data structure.
+The tool can be extended to support other programming languages by implementing
+a parser which returns the parsed data in the same data structure as below.
+Types might be added in the future to make the data structure more convenient to use,
+but it is not highly prioritized at the moment.
+
+
+Below is an example of the data structure
 outputted as json:
 ```json
 {
